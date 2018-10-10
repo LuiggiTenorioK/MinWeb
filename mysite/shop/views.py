@@ -47,3 +47,6 @@ def checkout(request):
         'total':total,
     }
     return HttpResponse(template.render(context, request))
+
+def thanks(request):
+    return render(request, 'shop/thanks.html')
