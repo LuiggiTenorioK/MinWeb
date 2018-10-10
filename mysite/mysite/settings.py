@@ -25,7 +25,7 @@ SECRET_KEY = '8!3_5b=ksvlr!y=td!h^2&d$ko56z-=db-pe54_wkzq!3$*3ng'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '18.222.127.215']
 
 # Application definition
 
