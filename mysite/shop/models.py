@@ -8,4 +8,5 @@ class Product(models.Model):
     state = models.IntegerField()
     description = models.CharField(max_length=300)
     img_path = models.CharField(max_length=300)
+    thumb_path = models.CharField(max_length=300)
     #img_path = models.FilePathField(path = '/static/img/',recursive=True)
