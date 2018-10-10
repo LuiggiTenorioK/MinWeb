@@ -131,7 +131,7 @@
                                                 <p>Qty</p>
                                                 <div class="quantity">
                                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="{{product.state}}">
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
                                             </div>
@@ -146,9 +146,9 @@
                         <div class="cart-summary">
                             <h5>Cart Total</h5>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>$140.00</span></li>
-                                <li><span>delivery:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span>$140.00</span></li>
+                                <li><span>subtotal:</span> <span>${{subtotal}}</span></li>
+                                <li><span>delivery:</span> <span>$3.00</span></li>
+                                <li><span>total:</span> <span>${{total}}</span></li>
                             </ul>
                             <div class="cart-btn mt-100">
                                 <a href="cart.html" class="btn amado-btn w-100">Checkout</a>
@@ -177,7 +177,7 @@
                     <div class="newsletter-form mb-100">
                         <form action="#" method="post">
                             <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
-                            <input type="submit" value="Subscribe">
+                            <input type="submit" value="Subscribe" disabled>
                         </form>
                     </div>
                 </div>

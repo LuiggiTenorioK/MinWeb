@@ -20,8 +20,30 @@ def detail(request, product_id):
 def cart(request):
     product_list = Product.objects.filter(state__gt=0)
     template = loader.get_template('shop/cart.html')
+    subtotal = 0.0
+    total = 0.0
+    for product in product_list:
+        subtotal += product.price*product.state
+    total = subtotal + 3.0
     context = {
         'product_list': product_list,
+        'subtotal':subtotal,
+        'total':total,
     }
-    
+    return HttpResponse(template.render(context, request))
+
+
+def checkout(request):
+    product_list = Product.objects.filter(state__gt=0)
+    template = loader.get_template('shop/checkout.html')
+    subtotal = 0.0
+    total = 0.0
+    for product in product_list:
+        subtotal += product.price*product.state
+    total = subtotal + 3.0
+    context = {
+        'product_list': product_list,
+        'subtotal':subtotal,
+        'total':total,
+    }
     return HttpResponse(template.render(context, request))
