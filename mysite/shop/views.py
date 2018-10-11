@@ -57,3 +57,6 @@ def multiChart(request):
     #template = loader.get_template('analytics/multiChart.html')
     #return HttpResponse(template.render(context, request))
     return render(request, 'analytics/multiChart.html')
+
+def thanks(request):
+    return render(request, 'shop/thanks.html')
