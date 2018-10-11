@@ -1,30 +1,178 @@
 <!DOCTYPE html>
 <html>
+<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.EMnUlrXkajU.O/m=auth2/exm=analytics,client/rt=j/sv=1/d=1/ed=1/am=wQ/rs=AGLTcCPteiRby_CSKchbdTQUtY9biIView/cb=gapi.loaded_2" async=""></script>
+<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.EMnUlrXkajU.O/m=client/exm=analytics/rt=j/sv=1/d=1/ed=1/am=wQ/rs=AGLTcCPteiRby_CSKchbdTQUtY9biIView/cb=gapi.loaded_1" async=""></script>
+<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.EMnUlrXkajU.O/m=analytics/rt=j/sv=1/d=1/ed=1/am=wQ/rs=AGLTcCPteiRby_CSKchbdTQUtY9biIView/cb=gapi.loaded_0" async=""></script>
+<script src="https://apis.google.com/js/platform.js" gapi_processed="true"></script>
 <head>
   <title>Real Time - Multichart</title>
   {% load static %}
 
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300" rel="stylesheet">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
 
-<!-- This demo uses the Chart.js graphing library and Moment.js to do date
-     formatting and manipulation. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script>
+    window.__trackAbandons = () => {
+      const ANALYTICS_URL = 'https://www.google-analytics.com/collect';
+      const GA_COOKIE = document.cookie.replace(
+        /(?:(?:^|.*;)\s*_ga\s*\=\s*(?:\w+\.\d\.)([^;]*).*$)|^.*$/, '$1');
+      const TRACKING_ID = 'UA-41425441-7';
+      const CLIENT_ID =  GA_COOKIE || (Math.random() * Math.pow(2, 52));
 
-<!-- Include the ViewSelector2 component script. -->
-<script src="{% static 'js/view-selector2.js' %}"></script>
+      navigator.sendBeacon && navigator.sendBeacon(ANALYTICS_URL, [
+        'v=1', 't=event', 'ec=Load', 'ea=abandon', 'el=pre-load', 'ni=1',
+        'tid=' + TRACKING_ID,
+        'cid=' + CLIENT_ID,
+        'cd9' + CLIENT_ID, // client ID custom dimension
+        'ev=' + Math.round(performance.now()),
+      ].join('&'));
+    };
+    window.addEventListener('unload', window.__trackAbandons);
+    </script>
+    <script>
+// Adds a progress bar if the page doesn't load after 1s.
+setTimeout(function() {
+  var progressBar = document.createElement('div');
+  progressBar.className = 'ProgressBar Header-progressIndicator';
+  document.getElementById('header').appendChild(progressBar);
+}, 1000);
 
-<!-- Include the DateRangeSelector component script. -->
-<script src="{% static 'js/date-range-selector.js' %}"></script>
+(function(w,d,s,g,js,fs){
+  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+  js.src='https://apis.google.com/js/platform.js';
+  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+}(window,document,'script'));
 
-<!-- Include the ActiveUsers component script. -->
-<script src="{% static 'js/active-users.js' %}"></script>
+gapi.analytics.ready(function() {
 
-<!-- Include the CSS that styles the charts. -->
-<link rel="stylesheet" href="{% static 'css/chartjs-visualizations.css' %}">
+  function setSignedInState() {
+    document.body.classList.remove('is-needingAuthorization');
+    document.body.classList.add('is-authorized');
+  }
+
+  function setSignedOutState() {
+    document.body.classList.remove('is-authorized');
+    document.body.classList.add('is-needingAuthorization');
+  }
+
+  function setNeedsAuthorizingState() {
+    document.body.classList.add('is-needingAuthorization');
+  }
+
+  gapi.analytics.auth.on('signIn', setSignedInState);
+  gapi.analytics.auth.on('signOut', setSignedOutState);
+  gapi.analytics.auth.once('needsAuthorization', setNeedsAuthorizingState);
+  gapi.analytics.auth.once('error', setNeedsAuthorizingState);
+
+  // Authorize this user with the client ID in sitemap.yaml
+  gapi.analytics.auth.authorize({
+
+    container: 'embed-api-auth-container',
+    userInfoLabel: '',
+    clientid: '793177639245-olst43lspv93vkoql0b9l26hmpf9kfmv.apps.googleusercontent.com',
+  });
+});
+
+</script>
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<style>.gapi-analytics-data-chart .google-visualization-table{border:0;z-index:0}.gapi-analytics-data-chart .google-visualization-table-table{background:#fff;border-collapse:collapse;border-spacing:0;font:inherit;cursor:default;width:100%!important}.gapi-analytics-data-chart .google-visualization-table-table *{font:inherit;vertical-align:inherit}.gapi-analytics-data-chart .google-visualization-table-sortind{color:silver;display:inline-block;font:1em/0 Arial,sans-serif;margin:0 0 0 .5em;padding:0}.gapi-analytics-data-chart .google-visualization-table-td-bool,.gapi-analytics-data-chart .google-visualization-table-td-center,.gapi-analytics-data-chart .google-visualization-table-td-number{text-align:right}.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-tr-odd{background:#f8f8f8}.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-tr-over{background-color:#f0f0f0}.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-tr-sel{background-color:#ffffc0}.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-tr-even:last-child,.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-tr-odd:last-child{border-bottom:1px solid #e8e8e8}.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-th{border:0;border-bottom:1px solid #a8a8a8;font-weight:700;padding:.6em 1em;text-align:left;white-space:nowrap}.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-td{border:0;border-left:1px solid #e8e8e8;padding:.6em 1em}.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-td:first-child{border-left:0} </style>
+<style>.gapi-analytics-auth-styles-signinbutton{display:inline-block;background:#f7991c;color:#fff;width:200px;border-radius:2px;white-space:nowrap}.gapi-analytics-auth-styles-signinbutton:hover{background:#ff9d27;cursor:hand}.gapi-analytics-auth-styles-signinbutton-image{background:url("//www.gstatic.com/analytics-api/access-analytics-iconv1.png") transparent 5px 50% no-repeat;display:inline-block;vertical-align:middle;width:30px;height:30px;border-right:#db8321 1px solid}.gapi-analytics-auth-styles-signinbutton-buttonText{display:inline-block;vertical-align:middle;padding-left:15px;padding-right:15px;font-size:12px;font-weight:bold;font-family:Roboto,arial,sans-serif}.gapi-analytics-auth-styles-userinfo{width:200px;height:30px;font-size:12px;font-weight:bold;color:#0a5ae5;font-family:Roboto,arial,sans-serif;background:#f2f2f2;text-align:center;overflow:hidden;text-overflow:ellipsis;line-height:30px;white-space:nowrap} </style>
 </head>
 <body>
 
-<header>
+  <main class="Site-main">
+
+    <div class="Content">
+      <div class="u-lg-hidden">
+        <div class="Titles Titles--hero">
+  <h1 class="Titles-main">Embed API</h1>
+
+    <div class="Titles-sub">Third Party Visualizations</div>
+
+
+</div>
+      </div>
+
+<section>
+  <h2>Demo Overview</h2>
+  <p>The Embed API make it easy to query data and display it in a Google Chart. But it also allows you to access the raw data so you can display it however you want. This example uses the <a href="http://www.chartjs.org/">Chart.js</a> visualization library.</p>
+  <p>The Embed API is built on top of the <a href="https://developers.google.com/api-client-library/javascript/">Google APIs client library</a>, which means you don't just get access to the reporting API, you get access to everything.
+
+  </p><p>In addition to showing Chart.js visualizations, this example uses the underlying client library to query data from the <a href="https://developers.google.com/analytics/devguides/reporting/realtime/">Real Time Reporting API</a>.
+</p></section>
+
+<div class="Dashboard Dashboard--full">
+  <header class="Dashboard-header">
+    <ul class="FlexGrid">
+      <li class="FlexGrid-item">
+        <div class="Titles">
+          <h1 class="Titles-main" id="view-name">MinWeb Example (All Web Site Data)</h1>
+          <div class="Titles-sub">Various visualizations</div>
+        </div>
+      </li>
+      <li class="FlexGrid-item FlexGrid-item--fixed">
+        <div id="active-users-container"><div class="ActiveUsers">Active Users: <b class="ActiveUsers-value">0</b></div></div>
+      </li>
+    </ul>
+    <div id="view-selector-container"><div class="ViewSelector2">  <div class="ViewSelector2-item">    <label>Account</label>    <select class="FormField"><option selected="" value="127242564">
+        MinWeb
+      </option></select>  </div>  <div class="ViewSelector2-item">    <label>Property</label>    <select class="FormField"><option selected="" value="UA-127242564-1">
+        MinWeb Example
+      </option></select>  </div>  <div class="ViewSelector2-item">    <label>View</label>    <select class="FormField"><option selected="" value="183151858">
+        All Web Site Data
+      </option></select>  </div></div></div>
+  </header>
+
+  <ul class="FlexGrid FlexGrid--halves">
+    <li class="FlexGrid-item">
+      <div class="Chartjs">
+        <header class="Titles">
+          <h1 class="Titles-main">This Week vs Last Week</h1>
+          <div class="Titles-sub">By sessions</div>
+        </header>
+        <figure class="Chartjs-figure" id="chart-1-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
+        <ol class="Chartjs-legend" id="legend-1-container"><li><i style="background:rgba(220,220,220,0.5)"></i>Last Week</li><li><i style="background:rgba(151,187,205,0.5)"></i>This Week</li></ol>
+      </div>
+    </li>
+    <li class="FlexGrid-item">
+      <div class="Chartjs">
+        <header class="Titles">
+          <h1 class="Titles-main">This Year vs Last Year</h1>
+          <div class="Titles-sub">By users</div>
+        </header>
+        <figure class="Chartjs-figure" id="chart-2-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
+        <ol class="Chartjs-legend" id="legend-2-container"><li><i style="background:rgba(220,220,220,0.5)"></i>Last Year</li><li><i style="background:rgba(151,187,205,0.5)"></i>This Year</li></ol>
+      </div>
+    </li>
+    <li class="FlexGrid-item">
+      <div class="Chartjs">
+        <header class="Titles">
+          <h1 class="Titles-main">Top Browsers</h1>
+          <div class="Titles-sub">By pageview</div>
+        </header>
+        <figure class="Chartjs-figure" id="chart-3-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
+        <ol class="Chartjs-legend" id="legend-3-container"><li><i style="background:#4D5360"></i>Chrome</li><li><i style="background:#949FB1"></i>Safari</li><li><i style="background:#D4CCC5"></i>Android Webview</li></ol>
+      </div>
+    </li>
+    <li class="FlexGrid-item">
+      <div class="Chartjs">
+        <header class="Titles">
+          <h1 class="Titles-main">Top Countries</h1>
+          <div class="Titles-sub">By sessions</div>
+        </header>
+        <figure class="Chartjs-figure" id="chart-4-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
+        <ol class="Chartjs-legend" id="legend-4-container"><li><i style="background:#4D5360"></i>Peru</li><li><i style="background:#949FB1"></i>United States</li></ol>
+      </div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </main>
+
+
+<!-- <header>
   <div id="embed-api-auth-container"></div>
   <div id="view-selector-container"></div>
   <div id="view-name"></div>
@@ -49,20 +197,27 @@
   <h3>Top Countries (by sessions)</h3>
   <figure class="Chartjs-figure" id="chart-4-container"></figure>
   <ol class="Chartjs-legend" id="legend-4-container"></ol>
-</div>
+</div> -->
 
+
+<!-- This demo uses the Chart.js graphing library and Moment.js to do date
+     formatting and manipulation. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+
+<!-- Include the ViewSelector2 component script. -->
+<script src="{% static 'js/view-selector2.js' %}"></script>
+
+<!-- Include the DateRangeSelector component script. -->
+<script src="{% static 'js/date-range-selector.js' %}"></script>
+
+<!-- Include the ActiveUsers component script. -->
+<script src="{% static 'js/active-users.js' %}"></script>
+
+<!-- Include the CSS that styles the charts. -->
+<link rel="stylesheet" href="{% static 'css/chartjs-visualizations.css' %}">
 
 <script>
-(function(w,d,s,g,js,fs){
-  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
-  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
-  js.src='https://apis.google.com/js/platform.js';
-  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
-}(window,document,'script'));
-</script>
-
-<script>
-
 // == NOTE ==
 // This code uses ES6 promises. If you want to use this code in a browser
 // that doesn't supporting promises natively, you'll have to include a polyfill.
@@ -76,7 +231,7 @@ gapi.analytics.ready(function() {
    */
   gapi.analytics.auth.authorize({
     container: 'embed-api-auth-container',
-    clientid: '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com'
+    clientid: 'REPLACE WITH YOUR CLIENT ID'
   });
 
 
