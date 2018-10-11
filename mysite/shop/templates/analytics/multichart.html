@@ -11,7 +11,7 @@
 <link href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300" rel="stylesheet">
 <script async="" src="https://www.google-analytics.com/analytics.js"></script>
 
-<script>
+<!-- <script>
     window.__trackAbandons = () => {
       const ANALYTICS_URL = 'https://www.google-analytics.com/collect';
       const TRACKING_ID = 'UA-127242564-1';
@@ -26,7 +26,7 @@
       ].join('&'));
     };
     window.addEventListener('unload', window.__trackAbandons);
-    </script>
+    </script> -->
     <script>
 // Adds a progress bar if the page doesn't load after 1s.
 setTimeout(function() {
@@ -42,35 +42,35 @@ setTimeout(function() {
   fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 }(window,document,'script'));
 
-gapi.analytics.ready(function() {
+// gapi.analytics.ready(function() {
 
-  function setSignedInState() {
-    document.body.classList.remove('is-needingAuthorization');
-    document.body.classList.add('is-authorized');
-  }
+//   function setSignedInState() {
+//     document.body.classList.remove('is-needingAuthorization');
+//     document.body.classList.add('is-authorized');
+//   }
 
-  function setSignedOutState() {
-    document.body.classList.remove('is-authorized');
-    document.body.classList.add('is-needingAuthorization');
-  }
+//   function setSignedOutState() {
+//     document.body.classList.remove('is-authorized');
+//     document.body.classList.add('is-needingAuthorization');
+//   }
 
-  function setNeedsAuthorizingState() {
-    document.body.classList.add('is-needingAuthorization');
-  }
+//   function setNeedsAuthorizingState() {
+//     document.body.classList.add('is-needingAuthorization');
+//   }
 
-  gapi.analytics.auth.on('signIn', setSignedInState);
-  gapi.analytics.auth.on('signOut', setSignedOutState);
-  gapi.analytics.auth.once('needsAuthorization', setNeedsAuthorizingState);
-  gapi.analytics.auth.once('error', setNeedsAuthorizingState);
+//   gapi.analytics.auth.on('signIn', setSignedInState);
+//   gapi.analytics.auth.on('signOut', setSignedOutState);
+//   gapi.analytics.auth.once('needsAuthorization', setNeedsAuthorizingState);
+//   gapi.analytics.auth.once('error', setNeedsAuthorizingState);
 
-  // Authorize this user with the client ID in sitemap.yaml
-  gapi.analytics.auth.authorize({
+//   // Authorize this user with the client ID in sitemap.yaml
+//   gapi.analytics.auth.authorize({
 
-    container: 'embed-api-auth-container',
-    userInfoLabel: '',
-    clientid: '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com',
-  });
-});
+//     container: 'embed-api-auth-container',
+//     userInfoLabel: '',
+//     clientid: '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com',
+//   });
+// });
 
 </script>
 
@@ -88,7 +88,6 @@ gapi.analytics.ready(function() {
   <h1 class="Titles-main">Embed API</h1>
 
     <div class="Titles-sub">Third Party Visualizations</div>
-
 
 </div>
       </div>
@@ -111,16 +110,19 @@ gapi.analytics.ready(function() {
         </div>
       </li>
       <li class="FlexGrid-item FlexGrid-item--fixed">
-        <div id="active-users-container"><div class="ActiveUsers">Active Users: <b class="ActiveUsers-value">0</b></div></div>
+        <!-- <div id="active-users-container"><div class="ActiveUsers">Active Users: <b class="ActiveUsers-value">0</b></div></div> -->
+        <div id="active-users-container"></div>
       </li>
     </ul>
-    <div id="view-selector-container"><div class="ViewSelector2">  <div class="ViewSelector2-item">    <label>Account</label>    <select class="FormField"><option selected="" value="127242564">
+    <div id="view-selector-container"></div>
+    <div id="view-name"></div>
+    <!-- <div id="view-selector-container"><div class="ViewSelector2">  <div class="ViewSelector2-item">    <label>Account</label>    <select class="FormField"><option selected="" value="127242564">
         MinWeb
       </option></select>  </div>  <div class="ViewSelector2-item">    <label>Property</label>    <select class="FormField"><option selected="" value="UA-127242564-1">
         MinWeb Example
       </option></select>  </div>  <div class="ViewSelector2-item">    <label>View</label>    <select class="FormField"><option selected="" value="183151858">
         All Web Site Data
-      </option></select>  </div></div></div>
+      </option></select>  </div></div></div> -->
   </header>
 
   <ul class="FlexGrid FlexGrid--halves">
@@ -130,8 +132,8 @@ gapi.analytics.ready(function() {
           <h1 class="Titles-main">This Week vs Last Week</h1>
           <div class="Titles-sub">By sessions</div>
         </header>
-        <figure class="Chartjs-figure" id="chart-1-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
-        <ol class="Chartjs-legend" id="legend-1-container"><li><i style="background:rgba(220,220,220,0.5)"></i>Last Week</li><li><i style="background:rgba(151,187,205,0.5)"></i>This Week</li></ol>
+        <figure class="Chartjs-figure" id="chart-1-container"></figure>
+        <ol class="Chartjs-legend" id="legend-1-container"></ol>
       </div>
     </li>
     <li class="FlexGrid-item">
@@ -140,8 +142,8 @@ gapi.analytics.ready(function() {
           <h1 class="Titles-main">This Year vs Last Year</h1>
           <div class="Titles-sub">By users</div>
         </header>
-        <figure class="Chartjs-figure" id="chart-2-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
-        <ol class="Chartjs-legend" id="legend-2-container"><li><i style="background:rgba(220,220,220,0.5)"></i>Last Year</li><li><i style="background:rgba(151,187,205,0.5)"></i>This Year</li></ol>
+        <figure class="Chartjs-figure" id="chart-2-container"></figure>
+        <ol class="Chartjs-legend" id="legend-2-container"></ol>
       </div>
     </li>
     <li class="FlexGrid-item">
@@ -150,8 +152,8 @@ gapi.analytics.ready(function() {
           <h1 class="Titles-main">Top Browsers</h1>
           <div class="Titles-sub">By pageview</div>
         </header>
-        <figure class="Chartjs-figure" id="chart-3-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
-        <ol class="Chartjs-legend" id="legend-3-container"><li><i style="background:#4D5360"></i>Chrome</li><li><i style="background:#949FB1"></i>Safari</li><li><i style="background:#D4CCC5"></i>Android Webview</li></ol>
+        <figure class="Chartjs-figure" id="chart-3-container"></figure>
+        <ol class="Chartjs-legend" id="legend-3-container"></ol>
       </div>
     </li>
     <li class="FlexGrid-item">
@@ -160,8 +162,8 @@ gapi.analytics.ready(function() {
           <h1 class="Titles-main">Top Countries</h1>
           <div class="Titles-sub">By sessions</div>
         </header>
-        <figure class="Chartjs-figure" id="chart-4-container"><canvas width="938" height="500" style="width: 469px; height: 250px;"></canvas></figure>
-        <ol class="Chartjs-legend" id="legend-4-container"><li><i style="background:#4D5360"></i>Peru</li><li><i style="background:#949FB1"></i>United States</li></ol>
+        <figure class="Chartjs-figure" id="chart-4-container"></figure>
+        <ol class="Chartjs-legend" id="legend-4-container"></ol>
       </div>
     </li>
   </ul>
