@@ -58,7 +58,6 @@ gapi.analytics.ready(function() {
   gapi.analytics.auth.on('success', function(response) {
     //hide the auth-button
     document.querySelector("#auth-button").style.display='none';
-    timeline.execute();
   });
 
   dataChart.on('error', function(e) {
