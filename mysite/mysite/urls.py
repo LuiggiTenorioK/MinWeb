@@ -24,6 +24,6 @@ urlpatterns = [
     path('cart/', views.cart,name='cart'),
     path('checkout/', views.checkout,name='checkout'),
     path('chart/', views.simpleChart,name='chart'),
-    path('realtime/',views.multiChart,name='realtime')
+    path('realtime/',views.multiChart,name='realtime'),
     path('thanks/', views.thanks,name='thanks'),
 ]
