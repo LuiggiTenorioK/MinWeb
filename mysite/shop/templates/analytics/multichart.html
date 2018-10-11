@@ -4,18 +4,33 @@
   <title>Real Time - Multichart</title>
   {% load static %}
 
-  <script>
-    (function(w,d,s,g,js,fjs){
-      g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(cb){this.q.push(cb)}};
-      js=d.createElement(s);fjs=d.getElementsByTagName(s)[0];
-      js.src='https://apis.google.com/js/platform.js';
-      fjs.parentNode.insertBefore(js,fjs);js.onload=function(){g.load('analytics')};
-    }(window,document,'script'));
-  </script>
+
+<!-- This demo uses the Chart.js graphing library and Moment.js to do date
+     formatting and manipulation. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+
+<!-- Include the ViewSelector2 component script. -->
+<script src="view-selector2.js"></script>
+
+<!-- Include the DateRangeSelector component script. -->
+<script src="date-range-selector.js"></script>
+
+<!-- Include the ActiveUsers component script. -->
+<script src="active-users.js"></script>
+
+<!-- Include the CSS that styles the charts. -->
+<link rel="stylesheet" href="chartjs-visualizations.css">
 </head>
 <body>
-
-<!-- Step 1: Create the containing elements. -->
+  <script>
+(function(w,d,s,g,js,fs){
+  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+  js.src='https://apis.google.com/js/platform.js';
+  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+}(window,document,'script'));
+</script>
 
 <header>
   <div id="embed-api-auth-container"></div>
@@ -44,24 +59,8 @@
   <ol class="Chartjs-legend" id="legend-4-container"></ol>
 </div>
 
-<!-- Step 2: Load the library. -->
 
-<!-- This demo uses the Chart.js graphing library and Moment.js to do date
-     formatting and manipulation. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 
-<!-- Include the ViewSelector2 component script. -->
-<script src="/public/javascript/embed-api/components/view-selector2.js"></script>
-
-<!-- Include the DateRangeSelector component script. -->
-<script src="/public/javascript/embed-api/components/date-range-selector.js"></script>
-
-<!-- Include the ActiveUsers component script. -->
-<script src="/public/javascript/embed-api/components/active-users.js"></script>
-
-<!-- Include the CSS that styles the charts. -->
-<link rel="stylesheet" href="/public/css/chartjs-visualizations.css">
 
 <script>
 
