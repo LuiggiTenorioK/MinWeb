@@ -14,10 +14,8 @@
 <script>
     window.__trackAbandons = () => {
       const ANALYTICS_URL = 'https://www.google-analytics.com/collect';
-      const GA_COOKIE = document.cookie.replace(
-        /(?:(?:^|.*;)\s*_ga\s*\=\s*(?:\w+\.\d\.)([^;]*).*$)|^.*$/, '$1');
-      const TRACKING_ID = 'UA-41425441-7';
-      const CLIENT_ID =  GA_COOKIE || (Math.random() * Math.pow(2, 52));
+      const TRACKING_ID = 'UA-127242564-1';
+      const CLIENT_ID =  '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com';
 
       navigator.sendBeacon && navigator.sendBeacon(ANALYTICS_URL, [
         'v=1', 't=event', 'ec=Load', 'ea=abandon', 'el=pre-load', 'ni=1',
@@ -70,7 +68,7 @@ gapi.analytics.ready(function() {
 
     container: 'embed-api-auth-container',
     userInfoLabel: '',
-    clientid: '793177639245-olst43lspv93vkoql0b9l26hmpf9kfmv.apps.googleusercontent.com',
+    clientid: '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com',
   });
 });
 
@@ -231,7 +229,7 @@ gapi.analytics.ready(function() {
    */
   gapi.analytics.auth.authorize({
     container: 'embed-api-auth-container',
-    clientid: 'REPLACE WITH YOUR CLIENT ID'
+    clientid: '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com'
   });
 
 
