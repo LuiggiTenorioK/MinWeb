@@ -8,8 +8,9 @@
 
 <!-- Step 1: Create the containing elements. -->
 
-<section id="auth-button"></section>
+<div id="embed-api-auth-container"></div>
 <div id="chart-container"></div>
+<div id="view-selector-container"></div>
 
 <!-- Step 2: Load the library. -->
 
@@ -23,26 +24,42 @@
 </script>
 
 <script>
+
 gapi.analytics.ready(function() {
-
-  // Step 3: Authorize the user.
-
-  var CLIENT_ID = '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com';
-
+  /**
+   * Authorize the user immediately if the user has already granted access.
+   * If no access has been created, render an authorize button inside the
+   * element with the ID "embed-api-auth-container".
+   */
   gapi.analytics.auth.authorize({
-    container: 'auth-button',
-    clientid: CLIENT_ID,
-    userInfoLabel: ""
+    container: 'embed-api-auth-container',
+    clientid: '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com'
   });
 
-  // Step 5: Create the timeline chart.
 
+  /**
+   * Create a new ViewSelector instance to be rendered inside of an
+   * element with the id "view-selector-container".
+   */
+  var viewSelector = new gapi.analytics.ViewSelector({
+    container: 'view-selector-container'
+  });
+
+  // Render the view selector to the page.
+  viewSelector.execute();
+
+
+  /**
+   * Create a new DataChart instance with the given query parameters
+   * and Google chart options. It will be rendered inside an element
+   * with the id "chart-container".
+   */
   var dataChart = new gapi.analytics.googleCharts.DataChart({
     query: {
       metrics: 'ga:sessions',
       dimensions: 'ga:date',
       'start-date': '30daysAgo',
-      'end-date': 'today'
+      'end-date': 'yesterday'
     },
     chart: {
       container: 'chart-container',
@@ -53,17 +70,14 @@ gapi.analytics.ready(function() {
     }
   });
 
-  // Step 6: Hook up the components to work together.
 
-  gapi.analytics.auth.on('success', function(response) {
-    //hide the auth-button
-    document.querySelector("#auth-button").style.display='none';
+  /**
+   * Render the dataChart on the page whenever a new view is selected.
+   */
+  viewSelector.on('change', function(ids) {
+    dataChart.set({query: {ids: ids}}).execute();
   });
 
-  dataChart.on('error', function(e) {
-    console.dir(e);
-    console.log('timeline err')
-  });
 });
 </script>
 </body>
