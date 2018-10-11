@@ -9,7 +9,6 @@
 <!-- Step 1: Create the containing elements. -->
 
 <section id="auth-button"></section>
-<section id="view-selector"></section>
 <section id="timeline"></section>
 
 <!-- Step 2: Load the library. -->
@@ -35,12 +34,6 @@ gapi.analytics.ready(function() {
     clientid: CLIENT_ID,
   });
 
-  // Step 4: Create the view selector.
-
-  var viewSelector = new gapi.analytics.ViewSelector({
-    container: 'view-selector'
-  });
-
   // Step 5: Create the timeline chart.
 
   var timeline = new gapi.analytics.googleCharts.DataChart({
@@ -50,10 +43,18 @@ gapi.analytics.ready(function() {
       'metrics': 'ga:sessions',
       'start-date': '30daysAgo',
       'end-date': 'yesterday',
+      'ids': "ga:31405"
     },
     chart: {
       type: 'LINE',
-      container: 'timeline'
+      container: 'timeline',
+      options:{
+        'animation.duration':200,
+        animation:{
+          duration:1000,
+          startup:true
+        }
+      }
     }
   });
 
@@ -63,13 +64,9 @@ gapi.analytics.ready(function() {
     viewSelector.execute();
   });
 
-  viewSelector.on('change', function(ids) {
-    var newIds = {
-      query: {
-        ids: ids
-      }
-    }
-    timeline.set(newIds).execute();
+  timeline.on('error', function(e) {
+    console.dir(e);
+    console.log('timeline err')
   });
 });
 </script>

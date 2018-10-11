@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.EMnUlrXkajU.O/m=auth2/exm=analytics,client/rt=j/sv=1/d=1/ed=1/am=wQ/rs=AGLTcCPteiRby_CSKchbdTQUtY9biIView/cb=gapi.loaded_2" async=""></script>
-<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.EMnUlrXkajU.O/m=client/exm=analytics/rt=j/sv=1/d=1/ed=1/am=wQ/rs=AGLTcCPteiRby_CSKchbdTQUtY9biIView/cb=gapi.loaded_1" async=""></script>
-<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.EMnUlrXkajU.O/m=analytics/rt=j/sv=1/d=1/ed=1/am=wQ/rs=AGLTcCPteiRby_CSKchbdTQUtY9biIView/cb=gapi.loaded_0" async=""></script>
 <script src="https://apis.google.com/js/platform.js" gapi_processed="true"></script>
 <head>
   <title>Real Time - Multichart</title>
@@ -11,67 +8,13 @@
 <link href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300" rel="stylesheet">
 <script async="" src="https://www.google-analytics.com/analytics.js"></script>
 
-<!-- <script>
-    window.__trackAbandons = () => {
-      const ANALYTICS_URL = 'https://www.google-analytics.com/collect';
-      const TRACKING_ID = 'UA-127242564-1';
-      const CLIENT_ID =  '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com';
-
-      navigator.sendBeacon && navigator.sendBeacon(ANALYTICS_URL, [
-        'v=1', 't=event', 'ec=Load', 'ea=abandon', 'el=pre-load', 'ni=1',
-        'tid=' + TRACKING_ID,
-        'cid=' + CLIENT_ID,
-        'cd9' + CLIENT_ID, // client ID custom dimension
-        'ev=' + Math.round(performance.now()),
-      ].join('&'));
-    };
-    window.addEventListener('unload', window.__trackAbandons);
-    </script> -->
-    <script>
-// Adds a progress bar if the page doesn't load after 1s.
-setTimeout(function() {
-  var progressBar = document.createElement('div');
-  progressBar.className = 'ProgressBar Header-progressIndicator';
-  document.getElementById('header').appendChild(progressBar);
-}, 1000);
-
-(function(w,d,s,g,js,fs){
-  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
-  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+<script>
+(function(w,d,s,g,js,fjs){
+  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(cb){this.q.push(cb)}};
+  js=d.createElement(s);fjs=d.getElementsByTagName(s)[0];
   js.src='https://apis.google.com/js/platform.js';
-  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+  fjs.parentNode.insertBefore(js,fjs);js.onload=function(){g.load('analytics')};
 }(window,document,'script'));
-
-// gapi.analytics.ready(function() {
-
-//   function setSignedInState() {
-//     document.body.classList.remove('is-needingAuthorization');
-//     document.body.classList.add('is-authorized');
-//   }
-
-//   function setSignedOutState() {
-//     document.body.classList.remove('is-authorized');
-//     document.body.classList.add('is-needingAuthorization');
-//   }
-
-//   function setNeedsAuthorizingState() {
-//     document.body.classList.add('is-needingAuthorization');
-//   }
-
-//   gapi.analytics.auth.on('signIn', setSignedInState);
-//   gapi.analytics.auth.on('signOut', setSignedOutState);
-//   gapi.analytics.auth.once('needsAuthorization', setNeedsAuthorizingState);
-//   gapi.analytics.auth.once('error', setNeedsAuthorizingState);
-
-//   // Authorize this user with the client ID in sitemap.yaml
-//   gapi.analytics.auth.authorize({
-
-//     container: 'embed-api-auth-container',
-//     userInfoLabel: '',
-//     clientid: '113356736120-0bhe94tba30ea8aj4lcffops192haigv.apps.googleusercontent.com',
-//   });
-// });
-
 </script>
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -104,10 +47,7 @@ setTimeout(function() {
   <header class="Dashboard-header">
     <ul class="FlexGrid">
       <li class="FlexGrid-item">
-        <div class="Titles">
-          <h1 class="Titles-main" id="view-name">MinWeb Example (All Web Site Data)</h1>
-          <div class="Titles-sub">Various visualizations</div>
-        </div>
+        <div id="embed-api-auth-container"></div>
       </li>
       <li class="FlexGrid-item FlexGrid-item--fixed">
         <!-- <div id="active-users-container"><div class="ActiveUsers">Active Users: <b class="ActiveUsers-value">0</b></div></div> -->
@@ -116,13 +56,6 @@ setTimeout(function() {
     </ul>
     <div id="view-selector-container"></div>
     <div id="view-name"></div>
-    <!-- <div id="view-selector-container"><div class="ViewSelector2">  <div class="ViewSelector2-item">    <label>Account</label>    <select class="FormField"><option selected="" value="127242564">
-        MinWeb
-      </option></select>  </div>  <div class="ViewSelector2-item">    <label>Property</label>    <select class="FormField"><option selected="" value="UA-127242564-1">
-        MinWeb Example
-      </option></select>  </div>  <div class="ViewSelector2-item">    <label>View</label>    <select class="FormField"><option selected="" value="183151858">
-        All Web Site Data
-      </option></select>  </div></div></div> -->
   </header>
 
   <ul class="FlexGrid FlexGrid--halves">
