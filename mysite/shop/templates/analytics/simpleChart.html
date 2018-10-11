@@ -32,6 +32,7 @@ gapi.analytics.ready(function() {
   gapi.analytics.auth.authorize({
     container: 'auth-button',
     clientid: CLIENT_ID,
+    userInfoLabel: ""
   });
 
   // Step 5: Create the timeline chart.
@@ -48,7 +49,7 @@ gapi.analytics.ready(function() {
     chart: {
       type: 'LINE',
       container: 'timeline',
-      options:{
+      options:{`
         'animation.duration':200,
         animation:{
           duration:1000,
@@ -61,7 +62,9 @@ gapi.analytics.ready(function() {
   // Step 6: Hook up the components to work together.
 
   gapi.analytics.auth.on('success', function(response) {
-    viewSelector.execute();
+    //hide the auth-button
+    document.querySelector("#auth-button").style.display='none';
+    timeline.execute();
   });
 
   timeline.on('error', function(e) {
