@@ -23,4 +23,6 @@ urlpatterns = [
     path('detail/<int:product_id>/', views.detail,name='detail'),
     path('cart/', views.cart,name='cart'),
     path('checkout/', views.checkout,name='checkout'),
+    path('chart/', views.simpleChart,name='chart'),
+    path('realtime/',views.multiChart,name='realtime')
 ]

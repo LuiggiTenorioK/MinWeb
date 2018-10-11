@@ -47,3 +47,13 @@ def checkout(request):
         'total':total,
     }
     return HttpResponse(template.render(context, request))
+
+def simpleChart(request):
+    #template = loader.get_template('analytics/simpleChart.html')
+    #return HttpResponse(template.render(context, request))
+    return render(request, 'analytics/simpleChart.html')
+
+def multiChart(request):
+    #template = loader.get_template('analytics/multiChart.html')
+    #return HttpResponse(template.render(context, request))
+    return render(request, 'analytics/multiChart.html')
